@@ -61,18 +61,18 @@ def handle_calculate_IK(req):
 	# Extract rotation matrices from the transformation matrices
 	R,P,Y = symbols('R P Y')
 	def Rot(symb,Roll=R,Pitch=P,Yaw=Y):
-		if symb == "R":
+		if symb == 'R':
 
 			Rot = Matrix([
 			            [   1,      0,       0],
 			            [   0, cos(Roll), -sin(Roll)],
 			            [   0, sin(Roll),  cos(Roll)]]) 
-		elif symb == "P":
+		elif symb == 'P':
 			Rot = Matrix([
 			            [ cos(Pitch), 0, sin(Pitch)],
 			            [      0, 1,      0],
 			            [-sin(Pitch), 0, cos(Pitch)]])  
-		elif symb == "Y":
+		elif symb == 'Y':
 			Rot = Matrix([
 			            [cos(Yaw), -sin(Yaw), 0],
 			            [sin(Yaw),  cos(Yaw), 0],
@@ -80,6 +80,12 @@ def handle_calculate_IK(req):
 
 		return Rot
         ###	
+    Rot_x = Rot('R')
+    Rot_y = Rot('P')
+    Rot_z = Rot('Y')
+    Rot_F = Rot_z.subs(Y,radians(180))*Rot_Y.subs(P,radians(-90))
+    Rot_E = Rot_z*Rot_y*Rot_x
+    Rot_EE = Rot_E * Rot_F
 
         # Initialize service response
         joint_trajectory_list = []
