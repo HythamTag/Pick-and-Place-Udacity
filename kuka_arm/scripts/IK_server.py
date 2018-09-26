@@ -57,11 +57,29 @@ def handle_calculate_IK(req):
 	T5_6=Transform(q6,d6,a5,alpha5)
 	T6_G=Transform(q7,d7,a6,alpha6)
 	T0_G= T0_1*T1_2*T2_3*T3_4*T4_5*T5_6*T6_G
-	 
+
 	# Extract rotation matrices from the transformation matrices
-	#
-	#
-        ###
+	R,P,Y = symbols('R P Y')
+	def Rot(symb,Roll=R,Pitch=P,Yaw=Y):
+		if symb == "R":
+
+			Rot = Matrix([
+			            [   1,      0,       0],
+			            [   0, cos(Roll), -sin(Roll)],
+			            [   0, sin(Roll),  cos(Roll)]]) 
+		elif symb == "P":
+			Rot = Matrix([
+			            [ cos(Pitch), 0, sin(Pitch)],
+			            [      0, 1,      0],
+			            [-sin(Pitch), 0, cos(Pitch)]])  
+		elif symb == "Y":
+			Rot = Matrix([
+			            [cos(Yaw), -sin(Yaw), 0],
+			            [sin(Yaw),  cos(Yaw), 0],
+			            [     0,       0, 1]])  
+
+		return Rot
+        ###	
 
         # Initialize service response
         joint_trajectory_list = []
