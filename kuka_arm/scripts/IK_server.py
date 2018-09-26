@@ -41,8 +41,13 @@ def handle_calculate_IK(req):
           alpha0:  -pi/2,      a0:     0,      d1: 0
           alpha0:      0,      a0:     0,      d1: 0.303 }
 	# Define Modified DH Transformation matrix
-	#
-	#
+	def Transform(q,d,a,alpha,s):
+        T = Matrix([[cos(q)             , -sin(q)            ,  0         , a              ],
+                    [sin(q) * cos(alpha), cos(q) * cos(alpha), -sin(alpha), -sin(alpha) * d],
+                    [sin(q) * sin(alpha), cos(q) * sin(alpha),  cos(alpha),  cos(alpha) * d ],
+                    [0                  , 0                  ,  0         ,  1              ]])
+
+        return T.subs(s)
 	# Create individual transformation matrices
 	#
 	#
