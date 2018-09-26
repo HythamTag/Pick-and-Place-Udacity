@@ -50,12 +50,14 @@ def handle_calculate_IK(req):
         return T.subs(s)
 	# Create individual transformation matrices
 	T0_1=Transform(q1,d1,a0,alpha0)
-	T0_2=Transform(q2,d2,a1,alpha1)
-	T0_3=Transform(q3,d3,a2,alpha2)
-	T0_4=Transform(q4,d4,a3,alpha3)
-	T0_5=Transform(q5,d5,a4,alpha4)
-	T0_6=Transform(q6,d6,a5,alpha5)
-	T0_G=Transform(q7,d7,a6,alpha6)
+	T1_2=Transform(q2,d2,a1,alpha1)
+	T2_3=Transform(q3,d3,a2,alpha2)
+	T3_4=Transform(q4,d4,a3,alpha3)
+	T4_5=Transform(q5,d5,a4,alpha4)
+	T5_6=Transform(q6,d6,a5,alpha5)
+	T6_G=Transform(q7,d7,a6,alpha6)
+	T0_G= T0_1*T1_2*T2_3*T3_4*T4_5*T5_6*T6_G
+	 
 	# Extract rotation matrices from the transformation matrices
 	#
 	#
