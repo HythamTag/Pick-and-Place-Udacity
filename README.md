@@ -114,8 +114,8 @@ There is no loopback implemented yet, so you need to close all the terminal wind
 In case the demo fails, close all three terminal windows and rerun the script.
 
 
-## Screen shot of my simulation
-![screenshot from 2018-09-26 18-54-12](https://user-images.githubusercontent.com/42402820/46116583-28c9ca80-c1fd-11e8-8dcf-48e292d86e90.png)
+## Video of my simulation ( 9/10 ) 
+[![](http://img.youtube.com/vi/7qkSZv-lOLg/0.jpg)](http://www.youtube.com/watch?v=7qkSZv-lOLg "Udacity Robot Arm")
 
 ## Forward kinematics & DH parameter table
 ### Extracting joint positions and orientations from URDF file.
@@ -394,5 +394,7 @@ and implementing it in the form of code we obtain the remaining thetas and that 
 ## Improvments
 - Finding solution for failing to pick the target sometimes and i was able to increase the probability of picking the target by making a change in trajectory_sampler.cpp in line by making ``` target_reach.position.x = target_x - 0.2; ``` to ``` target_reach.position.x = target_x - 0.15; ``` this will make the girpper go closer to the target
 - Finding solution for Discintinous that happen during simulation and that is done by calculating theta 5 and then finding the best choice for theta 4,6
--Another challenge is to avoid using symbolic proccessed inside the loop and this is done by doing all symbol simulation before entering the function ``` handle_calculate_IK(req) ```
+- Another challenge is to avoid using symbolic proccessed inside the loop and this is done by doing all symbol simulation before entering the function ``` handle_calculate_IK(req) ```
+
+
     
