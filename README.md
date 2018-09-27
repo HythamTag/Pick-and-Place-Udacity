@@ -380,11 +380,19 @@ So now we can slove for the thets as we evaluated the matrix and we have the org
 ![qq](https://user-images.githubusercontent.com/42402820/46147411-bc36e600-c265-11e8-98ee-a19b9fc9e07c.PNG)
 ![qqq](https://user-images.githubusercontent.com/42402820/46147412-bc36e600-c265-11e8-8894-759ad7da5770.PNG)
 
-and implementing it in the form of code we obtain the remaining thetas
+and implementing it in the form of code we obtain the remaining thetas and that is done by finding theta 5 an d finding the best choice for theta 4, 6
 ```
-    theta4 = atan2(R3_6[2,2], -R3_6[0,2])
     theta5 = atan2(sqrt(pow(R3_6[0,2], 2) + pow(R3_6[2,2], 2)), R3_6[1,2])
-    theta6 = atan2(-R3_6[1,1], R3_6[1,0])
+	if sin(theta5) < 0:
+	    theta4 = atan2(-R3_6[2,2], R3_6[0,2])
+	    theta6 = atan2(R3_6[1,1], -R3_6[1,0])
+	else:
+	    theta4 = atan2(R3_6[2,2], -R3_6[0,2])
+	    theta6 = atan2(-R3_6[1,1], R3_6[1,0])
 ```
-  
+
+## Improvments
+- Finding solution for failing to pick the target sometimes and i was able to increase the probability of picking the target by making a change in trajectory_sampler.cpp in line by making ``` target_reach.position.x = target_x - 0.2; ``` to ``` target_reach.position.x = target_x - 0.15; ``` this will make the girpper go closer to the target
+- Finding solution for Discintinous that happen during simulation and that is done by calculating theta 5 and then finding the best choice for theta 4,6
+-Another challenge is to avoid using symbolic proccessed inside the loop and this is done by doing all symbol simulation before entering the function ``` handle_calculate_IK(req) ```
     
